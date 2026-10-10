@@ -1,0 +1,352 @@
+/* ===== 0 to Shipped — resume parser (mock) ===== */
+
+:root {
+  --bg: #0b0f17;
+  --bg-soft: #111827;
+  --card: #141b29;
+  --border: #232d40;
+  --text: #e5eaf3;
+  --text-dim: #8b97ab;
+  --accent: #6366f1;
+  --accent-2: #22d3ee;
+  --good: #34d399;
+  --miss: #f87171;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+}
+
+/* ===== nav ===== */
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 20px 24px;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+.logo-arrow {
+  color: var(--accent-2);
+  margin: 0 2px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-links a:first-child {
+  color: var(--text-dim);
+  text-decoration: none;
+}
+
+.nav-links a:first-child:hover { color: var(--text); }
+
+/* ===== buttons ===== */
+
+.btn {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #fff;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-sm { padding: 8px 14px; font-size: 0.85rem; }
+
+.btn-ghost {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 9px 18px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.btn-ghost:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+/* ===== hero ===== */
+
+.hero {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 64px 24px 40px;
+  text-align: center;
+}
+
+.eyebrow {
+  color: var(--accent-2);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.grad {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sub {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  margin-bottom: 36px;
+}
+
+/* ===== dropzone ===== */
+
+.dropzone {
+  border: 2px dashed var(--border);
+  border-radius: 16px;
+  background: var(--bg-soft);
+  padding: 44px 24px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.dropzone:hover,
+.dropzone:focus-visible,
+.dropzone.dragover {
+  border-color: var(--accent);
+  background: #161f30;
+  outline: none;
+}
+
+.dz-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--accent-2);
+  margin-bottom: 10px;
+}
+
+.dz-title { font-weight: 600; font-size: 1.1rem; }
+
+.dz-sub { color: var(--text-dim); font-size: 0.9rem; margin-top: 4px; }
+
+.dz-browse { color: var(--accent-2); text-decoration: underline; }
+
+.dz-status {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: var(--accent-2);
+  min-height: 1.4em;
+}
+
+.dz-status.error { color: var(--miss); }
+
+/* ===== results ===== */
+
+.results {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 24px 24px 48px;
+}
+
+.results-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.results-head h2 { font-size: 1.5rem; }
+
+.file-name { color: var(--text-dim); font-size: 0.9rem; }
+
+.results-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.card h3 {
+  font-size: 1rem;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.count { color: var(--text-dim); font-weight: 400; font-size: 0.85rem; }
+
+.dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.dot-good { background: var(--good); }
+.dot-miss { background: var(--miss); }
+
+/* score ring */
+
+.score-card { text-align: center; }
+
+.ring-wrap {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  margin: 8px auto 16px;
+}
+
+.ring { width: 100%; height: 100%; transform: rotate(-90deg); }
+
+.ring-bg,
+.ring-fg {
+  fill: none;
+  stroke-width: 9;
+  stroke-linecap: round;
+}
+
+.ring-bg { stroke: var(--border); }
+
+.ring-fg {
+  stroke: url(#scoreGradient);
+  /* fallback if the gradient fails to paint */
+  stroke: var(--accent-2);
+  stroke-dasharray: 326.7;
+  stroke-dashoffset: 326.7;
+  transition: stroke-dashoffset 0.9s ease-out;
+}
+
+.score {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  font-size: 2.6rem;
+  font-weight: 700;
+}
+
+.score small { font-size: 1rem; color: var(--text-dim); margin-left: 2px; }
+
+.score-caption { color: var(--text); font-size: 0.95rem; }
+
+.score-note {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
+
+/* skill chips */
+
+.chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chips li {
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(52, 211, 153, 0.12);
+  color: var(--good);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+}
+
+.chips-missing li {
+  background: rgba(248, 113, 113, 0.08);
+  color: var(--miss);
+  border-color: rgba(248, 113, 113, 0.3);
+}
+
+/* ===== how it works ===== */
+
+.how {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 40px 24px 64px;
+  text-align: center;
+}
+
+.how h2 { margin-bottom: 28px; }
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  text-align: left;
+}
+
+.step {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.step h3 { font-size: 1rem; margin-bottom: 6px; }
+
+.step p { color: var(--text-dim); font-size: 0.9rem; }
+
+/* ===== footer ===== */
+
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 24px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+/* ===== responsive ===== */
+
+@media (max-width: 900px) {
+  .results-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+}
